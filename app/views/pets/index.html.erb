@@ -1,0 +1,22 @@
+<style>
+
+ul {
+  list-style-type: none;
+  padding: 25px;
+}
+
+</style>
+
+<h1>Our Pets</h1>
+
+<% @pets.each do |pet| %>
+  <ul>
+    <img src="<%= pet.image %>" width="200" height="200" align="left"><br>
+    <br><li>Name: <%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
+    <li>Sex: <%= pet.sex %></li>
+    <li>Approximate Age: <%= pet.approximate_age %></li>
+    <li>Shelter Name: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter.id}" %></li><br>
+    <li><%= link_to "Update Pet", "/pets/#{pet.id}/edit", method: :get %>
+    <li><%= link_to "Delete Pet", "/pets/#{pet.id}", method: :delete %>
+  </ul>
+<% end %>
