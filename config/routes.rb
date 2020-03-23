@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "/", to: "welcome#index"
+
   get "/shelters", to: "shelters#index"
   get "/shelters/new", to: "shelters#new"
   post "/shelters", to: "shelters#add"
@@ -8,7 +9,6 @@ Rails.application.routes.draw do
   patch "/shelters/:id", to: "shelters#update"
   delete "/shelters/:shelter_id/pets/:pet_id", to: "shelter_pets#destroy"
   delete "/shelters/:id", to: "shelters#destroy"
-
 
   get "/pets/:id", to: "pets#show"
   get "/pets", to: "pets#index"

@@ -11,3 +11,13 @@
 </div>
 
 <h2><%= link_to "Shelter's Pets", "/shelters/#{@shelter.id}/pets" %></h2>
+
+<h2>Read Our Reviews!</h2>
+<% @reviews.each do |review| %>
+  <div>
+    <p><%= review.title %></p>
+    <p>Rating <%= review.rating %></p>
+    <p>"<%= review.content %>"</p>
+    <p><%= image_tag(review.picture) %></p>
+  </div>
+<% end %>
