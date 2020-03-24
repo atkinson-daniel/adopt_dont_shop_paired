@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "/", to: "welcome#index"
+
   get "/shelters", to: "shelters#index"
   get "/shelters/new", to: "shelters#new"
   post "/shelters", to: "shelters#add"
@@ -8,7 +9,6 @@ Rails.application.routes.draw do
   patch "/shelters/:id", to: "shelters#update"
   delete "/shelters/:shelter_id/pets/:pet_id", to: "shelter_pets#destroy"
   delete "/shelters/:id", to: "shelters#destroy"
-
 
   get "/pets/:id", to: "pets#show"
   get "/pets", to: "pets#index"
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   patch "/pets/:pet_id/pending", to: "pets#adoption_status_pending"
   patch "/pets/:pet_id/adoptable", to: "pets#adoption_status_adoptable"
 
+  get "shelters/:shelter_id/reviews/new", to: "reviews#new"
+  post "shelters/:shelter_id/reviews", to: "reviews#create"
   get "/shelters/:shelter_id/reviews/:review_id/edit", to: "reviews#edit"
   patch "/shelters/:shelter_id/reviews/:review_id", to: "reviews#update"
   delete "/shelters/:shelter_id/reviews/:review_id", to: "reviews#destroy"
