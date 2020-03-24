@@ -43,5 +43,20 @@ RSpec.describe "When a visitor clicks Add New Review from shelter's show page", 
     expect(page).to have_content("5")
     expect(page).to have_content("I adopted Brownie and she was well trained. The staff are friendly and helpful.")
     expect(page).to have_css("img[src*='https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg']")
+
+  end
+  it 'cannot create review without title, rating, or content' do
+    shelter_1 = Shelter.create(name:    "Dumb Friends League",
+                               address: "123 Fake Street",
+                               city:    "Castle Rock",
+                               state:   "CO",
+                               zip:     "80104")
+
+    visit "/shelters/#{shelter_1.id}"
+    click_link("Add New Review")
+    click_button("Submit Review")
+
+    expect(page).to have_content("Review not created. Required information missing.")
+    expect(page).to have_button('Submit Review')
   end
 end
