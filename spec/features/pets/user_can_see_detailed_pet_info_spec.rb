@@ -40,6 +40,6 @@ describe "as a visitor" do
     expect(page).to have_link("Change to Adoptable")
     expect(page).to have_no_link("Change to Adoption Pending")
 
-
+    click_link("Change to Adoptable")
   end
 end
