@@ -84,6 +84,10 @@
       </h4>
     </header>
 
+    <% flash.each do |type, message| %>
+      <p><%= message %></p>
+    <% end %>
+
     <%= yield %>
 
     <footer id="mainFooter">
