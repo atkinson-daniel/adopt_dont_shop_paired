@@ -4,101 +4,18 @@
     <title>AdoptDontShop</title>
     <%= csrf_meta_tags %>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <style>
-    #mainHeader h1 {
-      font-family: Optima;
-      color: white;
-      font-size: 40px;
-      background-color: steelblue;
-      margin-left: -8px;
-      margin-right: -8px;
-      padding: 15px;
-      position: relative;
-      top: -27px
-    }
-
-    #mainHeader h4 {
-      font-family: Optima;
-      background-color: gainsboro;
-      padding: 10px;
-      margin-left: -8px;
-      margin-right: -8px;
-      margin-bottom: -40px;
-      position: relative;
-      top: -54px
-    }
-
-    #mainHeader ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-    }
-
-    #mainHeader li {
-      float: left
-    }
-
-    #mainHeader li a {
-      text-align: center;
-      padding: 10px
-    }
-
-    #mainFooter h1 {
-      font-size: 40px;
-      color: steelblue;
-      background-color: steelblue;
-      margin-left: -8px;
-      margin-right: -8px;
-      margin-bottom: 0px;
-      padding: 15px;
-      position: relative;
-      bottom: -27px
-    }
-
-    #mainFooter h4 {
-      color: gainsboro;
-      font-family: Optima;
-      background-color: gainsboro;
-      padding: 10px;
-      margin-left: -8px;
-      margin-right: -8px;
-      position: relative;
-      bottom: -54px
-    }
-
-  </style>
-
   <body>
-    <header id="mainHeader">
-      <h1>Adopt Don't Shop</h1>
-      <h4>
-        <ul class="navbar-right">
-          <li><a href="/shelters">Our Shelters</a></li>
-          <li><a href="/pets">Our Pets</a></li>
-        </ul>
-      </h4>
-    </header>
-    
-    <% flash.each do |type, message| %>
-    <p><%= message %></p>
-    <% end %>
+    <%= render template: 'layouts/header' %>
 
     <% flash.each do |type, message| %>
       <p><%= message %></p>
     <% end %>
 
     <%= yield %>
-
-
-    <footer id="mainFooter">
-      <h4>placeholder</h4>
-      <h1>Hello</h1>
-    </footer>
-
   </body>
 </html>
