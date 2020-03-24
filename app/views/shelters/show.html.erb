@@ -21,3 +21,5 @@
     <p><%= image_tag(review.picture) %></p>
   </div>
 <% end %>
+
+<h2><%= link_to "Add New Review", "/shelters/#{@shelter.id}/reviews/new" %></h2>
