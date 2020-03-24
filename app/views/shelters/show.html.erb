@@ -1,3 +1,20 @@
+<style>
+  .reviewTitle {
+    font-size: 18px;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  .reviews {
+    width: 350px
+  }
+
+  .modifyReviews {
+    font-size: 12px
+  }
+
+</style>
+
 <h1><%= @shelter.name %></h1>
 <p>
   <%= @shelter.address %>,<br>
@@ -5,9 +22,23 @@
   <%= @shelter.state %>,
   <%= @shelter.zip %>
 </p>
+
 <div>
   <%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit" %>
   <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
-</div>
+</div><br>
+
+<section class="reviews">
+  <% @shelter.reviews.each do |review| %>
+    <div class="reviewTitle"><%= review.title %></div>
+    <%= review.rating %> Stars<br>
+    <img src="<%= review.picture %>" width=200px><br>
+    <%= review.content %><br>
+    <section class="modifyReviews">
+      <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
+      <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %><br><br>
+    </section>
+  <% end %>
+</section>
 
 <h2><%= link_to "Shelter's Pets", "/shelters/#{@shelter.id}/pets" %></h2>
