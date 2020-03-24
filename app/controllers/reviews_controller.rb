@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     if review.save
       redirect_to "/shelters/#{@shelter.id}"
     else
-      flash[:notice] = "Review not created. Required information missing."
+      flash[:notice] = "Review not created. Title, rating, and content are required."
       render :new
     end
   end

@@ -56,7 +56,7 @@ RSpec.describe "When a visitor clicks Add New Review from shelter's show page", 
     click_link("Add New Review")
     click_button("Submit Review")
 
-    expect(page).to have_content("Review not created. Required information missing.")
+    expect(page).to have_content("Review not created. Title, rating, and content are required.")
     expect(page).to have_button('Submit Review')
   end
 end
