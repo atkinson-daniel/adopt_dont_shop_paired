@@ -25,7 +25,7 @@ describe "shelter page" do
     expect(page).to have_content(shelter_1.city)
     expect(page).to have_content(shelter_1.state)
     expect(page).to have_content(shelter_1.zip)
-    expect(page).to have_link("Our Shelters")
+    expect(page).to have_link("Shelter's Pets")
 
     expect(page).to have_content(review_1.title)
     expect(page).to have_content(review_1.rating)

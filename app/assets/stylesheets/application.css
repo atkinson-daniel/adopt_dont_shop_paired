@@ -18,37 +18,37 @@ body {
    color: #00203FFF;
  }
 
- ul {
+ul {
    list-style-type: none;
    padding: 25px;
  }
 
- li {
+li {
    list-style-type: none
  }
 
- .navbar, .nav-link, .navbar-brand{
+.navbar, .nav-link, .navbar-brand{
    background-color: #00203FFF;
    color: #ADEFD1FF;
  }
 
- .container-fluid {
+.container-fluid {
    flex-direction: row;
  }
 
- .container {
+.container {
    padding: 50px;
  }
- 
- img {
+
+img {
    width: 50%;
    border-radius: 5%;
  }
 
- figure {
+figure {
    float: left;
  }
 
- label {
+label {
   width: 200px;
 }
