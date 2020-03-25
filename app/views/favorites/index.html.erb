@@ -1,0 +1,13 @@
+<h1 class="container-fluid">Favorited Pets</h1>
+<div class="flex-row container-fluid">
+    <div class="row d-flex">
+      <% @pets.each do |pet| %>
+      <figure class="col-lg-6 d-flex">
+        <img src="<%= pet.image %>"><br>
+        <figcaption class="container my-auto">
+          <li><h2><%= link_to pet.name, "/pets/#{pet.id}" %></h2>
+        </figcaption>
+      </figure>
+      <% end %>
+    </div>
+</div>
