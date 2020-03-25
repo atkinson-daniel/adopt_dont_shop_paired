@@ -5,4 +5,11 @@ class Pet < ApplicationRecord
   def self.favorited?
     Pet.where("favorited = true")
   end
+
+  def self.unfavorite
+    @pets = Pet.favorited?.map do |pet|
+      pet[:favorited] = false
+      pet.save
+    end
+  end
 end
