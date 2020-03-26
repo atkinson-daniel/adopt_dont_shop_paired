@@ -1,19 +1,19 @@
 class FavoritesController < ApplicationController
 
   def index
-    @pets = Pet.favorited?
+    @pets = favorites.all_favorited_pets
   end
 
-  def new
+  def update
     @pet = Pet.find(params[:pet_id])
-    @pet[:favorited] = true
-    @pet.save
+    session[:favorites] ||= []
+    session[:favorites] << @pet
     flash[:notice] = "#{@pet.name} has been added to your favorites list."
     redirect_to "/pets/#{@pet.id}"
   end
 
-  def unfavorite
-    Pet.unfavorite
+  def destroy
+    favorites.contents.clear
     redirect_to "/favorites"
   end
 end
