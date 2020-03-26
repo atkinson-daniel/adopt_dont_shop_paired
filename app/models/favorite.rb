@@ -16,4 +16,18 @@ class Favorite
   def all_favorited_pets
     @contents
   end
+
+  def pets_applied(application, params)
+    params.each do |key, value|
+      if value == "applied"
+        pet = @contents.find { |pet| pet.id == key.to_i }
+        PetApplication.info(application, pet)
+        @contents.delete(pet)
+      end
+    end
+  end
+
+  def contains?(pet_id)
+    @contents.any? { |pet| pet["id"] == pet_id }
+  end
 end
