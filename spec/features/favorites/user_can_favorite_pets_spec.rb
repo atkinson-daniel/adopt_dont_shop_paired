@@ -14,8 +14,7 @@ describe "as a user" do
                        sex: "Male",
                        image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/single-minded-royalty-free-image-997141470-  1558379890.jpg?crop=0.671xw:1.00xh;0.0847xw,0&resize=640:*",
                        description: "Big things to come in big packages, you better be prepared to play with Buddy all day long!",
-                       adoption_status: "Adoptable",
-                       favorited: false)
+                       adoption_status: "Adoptable")
 
     visit "/pets/#{pet_1.id}"
     expect(page).to have_content("Favorites (0)")

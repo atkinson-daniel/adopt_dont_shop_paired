@@ -1,18 +1,19 @@
 <h1 class="container-fluid">Favorited Pets</h1><br>
 <div class="flex-row container-fluid">
-    <div class="row d-flex">
-      <% @pets.each do |pet| %>
-      <figure class="col-lg-6 d-flex">
-        <img src="<%= pet.image %>"><br>
-        <figcaption class="container my-auto">
-          <li><h2><%= link_to pet.name, "/pets/#{pet.id}" %></h2>
-        </figcaption>
-      </figure>
-      <% end %>
-      <% if Pet.favorited?.count == 0 %>
-        <div class="container-fluid">You have no favorited pets</div>
-      <% else %>
-        <div class="container-fluid"><%= link_to "Remove All Favorites", "/favorites", method: :patch %></div>
-      <% end %>
-    </div>
+  <% if @pets == 0 %>
+    <div class="container-fluid">You have no favorited pets</div>
+  <% else %>
+  <% @pets.each do |pet| %>
+  <div class="row d-flex" id="favorite-pet-<%= pet["id"] %>">
+    <figure class="col-lg-6 d-flex">
+      <img src="<%= pet["image"] %>"><br>
+      <figcaption class="container my-auto">
+        <li><h2><%= link_to pet["name"], "/pets/#{pet["id"]}" %></h2>
+        <li><%= link_to "Remove from Favorites", "/favorites/#{pet["id"]}", method: :delete %></li>
+      </figcaption>
+    </figure>
+  </div>
+  <% end %>
+  <div class="container-fluid"><%= link_to "Remove All Favorites", "/favorites", method: :delete %></div>
+  <% end %>
 </div>

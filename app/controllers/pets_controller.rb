@@ -48,8 +48,7 @@ class PetsController < ApplicationController
   private
   def pet_params_new
     params[:adoption_status] = "Adoptable"
-    params[:favorited] = false
-    params.permit(:image, :name, :description, :approximate_age, :sex, :adoption_status, :favorited)
+    params.permit(:image, :name, :description, :approximate_age, :sex, :adoption_status)
   end
 
   def change_adoption_status
