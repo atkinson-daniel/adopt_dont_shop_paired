@@ -8,7 +8,13 @@
       <li>Sex: <%= @pet.sex %>
       <li>Adoption Status: <%= @pet.adoption_status %>
   </ul>
-  <li><%= link_to "Favorite Pet", "/favorites/#{@pet.id}", method: :patch %></li>
+
+  <% if favorites.contains?(@pet.id)%>
+    <%= link_to "Remove from Favorites", "/favorites/#{@pet.id}", method: :delete %>
+  <% else %>
+    <%= link_to "Favorite Pet", "/favorites/#{@pet.id}", method: :patch %>
+  <% end %>
+
   <li><%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %></li>
   <% if @pet.adoption_status == "Adoptable" %>
     <%= link_to "Change to Adoption Pending", "/pets/#{@pet.id}/pending", method: :patch %>

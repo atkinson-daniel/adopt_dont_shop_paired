@@ -27,7 +27,12 @@ class Favorite
     end
   end
 
+  def delete_pet(pet_id)
+    pet = @contents.find { |pet| pet["id"] == pet_id.to_i }
+    @contents.delete(pet)
+  end
+
   def contains?(pet_id)
-    @contents.any? { |pet| pet["id"] == pet_id }
+    contents.any? { |pet| pet["id"] == pet_id }
   end
 end
