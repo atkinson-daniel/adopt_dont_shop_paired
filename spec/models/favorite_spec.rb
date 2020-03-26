@@ -20,4 +20,12 @@ describe Favorite do
       expect(favorites.contents).to eq(["pet_1", "pet_2", "pet_3"])
     end
   end
+
+  describe "#all_favorited_pets" do
+    it "returns all favorited pets" do
+      favorites = Favorite.new(["pet_1", "pet_2"])
+
+      expect(favorites.all_favorited_pets).to eq(["pet_1", "pet_2"])
+    end
+  end
 end
