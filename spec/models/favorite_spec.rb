@@ -21,6 +21,14 @@ describe Favorite do
     end
   end
 
+  describe "#all_favorited_pets" do
+    it "returns all favorited pets" do
+      favorites = Favorite.new(["pet_1", "pet_2"])
+
+      expect(favorites.all_favorited_pets).to eq(["pet_1", "pet_2"])
+    end
+  end
+
   describe "#delete_pet" do
     it "can delete a single pet" do
       shelter_1 = Shelter.create(name:    "Dumb Friends League",
