@@ -9,6 +9,7 @@
       <li>Adoption Status: <%= @pet.adoption_status %>
   </ul>
 
+  <%= link_to "All Applications", controller: "/applications", pet_id: @pet.id %><br>
   <% if favorites.contains?(@pet.id)%>
     <%= link_to "Remove from Favorites", "/favorites/#{@pet.id}", method: :delete %>
   <% else %>
