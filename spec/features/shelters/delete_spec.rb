@@ -67,4 +67,30 @@ describe "shelters" do
     expect(page).to have_no_content(pet_3.name)
     expect(page).to have_content(pet_2.name)
   end
+
+  it "deletes reviews upon deletion" do
+
+    shelter_1 = Shelter.create(name:    "Dumb Friends League",
+                               address: "123 Fake Street",
+                               city:    "Castle Rock",
+                               state:   "CO",
+                               zip:     "80104")
+
+    review_1 = shelter_1.reviews.create(title: "Super Helpful",
+                                        content: "Very patient staff, well trained pets for life, and overall very satisfied!",
+                                        rating: 5,
+                                        picture: "https://www.petmd.com/sites/default/files/CANS_dogsmiling_379727605.jpg")
+
+    review_2 = shelter_1.reviews.create(title: "Need More Pets In My Life",
+                                        rating: 4,
+                                        content: "Definitely, quality over quantity, and I guess that's not necessarily a bad thing!")
+
+    visit "/shelters"
+
+    within("#shelter-#{shelter_1.id}") do
+      click_link "Delete Shelter"
+    end
+
+    expect(Review.all).to eq([])
+  end
 end

@@ -53,7 +53,7 @@ describe Shelter do
   end
 
   describe "#destroy_pets" do
-    it "deletes pets associated with a shelter" do
+    it "deletes foreign keys associated with a shelter" do
 
       shelter_1 = Shelter.create(name:    "Dumb Friends League",
                                  address: "123 Fake Street",
@@ -71,9 +71,15 @@ describe Shelter do
                             sex: "Female",
                             image: "https://getyourpet.com/wp-content/uploads/2018/09/pitbull-in-phoenix-yard.jpg")
 
-      shelter_1.destroy_pets
+      review_2 = shelter_1.reviews.create(title: "Need More Pets In My Life",
+                                          rating: 4,
+                                          content: "Definitely, quality over quantity, and I guess that's not necessarily a bad thing!")
+
+      shelter_1.destroy_associated
 
       expect(shelter_1.pets).to eq([])
+      expect(shelter_1.reviews).to eq([])
+
     end
   end
 end
