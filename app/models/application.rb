@@ -4,8 +4,6 @@ class Application < ApplicationRecord
   has_many :pets, through: :pet_applications
 
   def self.applications_by_pet(params)
-    PetApplication.where(:pet_id == params[:pet_id]).map do |row|
-      row.application
-    end
+    Pet.find(params[:pet_id]).applications
   end
 end

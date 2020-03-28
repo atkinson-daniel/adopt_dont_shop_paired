@@ -1,0 +1,8 @@
+<h2>All Applications</h2>
+
+<section class="list_of_applicants">
+  <% @applications.each do |application| %>
+    <section id="application-<%= application.id %>">
+    <%= link_to application.name, "/pets/#{params[:pet_id]}/applications/#{application.id}" %>
+  <% end %>
+</section>

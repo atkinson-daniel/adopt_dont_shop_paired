@@ -20,7 +20,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    @application = Application.find(params[:app_id])
+    @application = Application.find(params[:application_id])
   end
 
   private
