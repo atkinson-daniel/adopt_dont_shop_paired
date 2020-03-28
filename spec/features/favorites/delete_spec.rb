@@ -48,7 +48,8 @@ RSpec.describe "as a user I can visit" do
     expect(current_path).to eq('/favorites')
     expect(page).to have_content('Favorites (1)')
     expect(page).to have_content(@pet_2.name)
-    within('.flex-row') do
+
+    within('.favorite-pets') do
       expect(page).to_not have_content(@pet_1.name)
     end
   end

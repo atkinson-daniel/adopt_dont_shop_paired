@@ -7,10 +7,10 @@ class ApplicationsController < ApplicationController
     application = Application.new(application_params)
     if application.save
       favorites.pets_applied(application, params)
-      flash.now[:notice] = "Your application for ... has been submitted."
+      flash[:notice] = "Your application for ... has been submitted."
       redirect_to "/favorites"
     else
-      flash.now[:notice] = "Unable to submit application: Required fields are empty."
+      flash[:notice] = "Unable to submit application: Required fields are empty."
       render :new
     end
   end
