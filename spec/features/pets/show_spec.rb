@@ -67,16 +67,22 @@ describe "on the pets show page" do
 
     application_1 = Application.create(name: "Daniel Atkinson", address: "1853 26th St", city: "Boulder", state: "CO", zip: "80302", phone_number: "303-815-0297", description: "I am a animal lover and work from home, so I can constant care and attention to my new friend.")
     application_2 = Application.create(name: "David Tran", address: "72 Hallow St", city: "Castle Rock", state: "CO", zip: "80104", phone_number: "303-566-9242", description: "I'm eager to bring a new friend into my home.")
+    application_3 = Application.create(name: "Aubree Smith", address: "9600 Shadow Ln", city: "Denver", state: "CO", zip: "80204", phone_number: "303-960-0240", description: "I love animals. Looking to add another to my family of two dogs, one cat, and one turtle.")
 
     PetApplication.create(application: application_1, pet: pet_1)
     PetApplication.create(application: application_2, pet: pet_1)
+    PetApplication.create(application: application_3, pet: pet_2)
+
 
     visit "/pets/#{pet_1.id}"
 
     expect(page).to have_content(pet_1.name)
     click_link("All Applications")
+    expect(current_path).to eq("/pets/#{pet_1.id}/applications")
 
     within(".list_of_applicants") do
+      expect(page).to have_no_content(application_3.name)
+
       within("#application-#{application_1.id}")
         expect(page).to have_link(application_1.name)
       end
@@ -85,7 +91,7 @@ describe "on the pets show page" do
         expect(page).to have_link(application_2.name)
         click_link(application_2.name)
 
-        expect(current_path).to eq("/applications/#{application_2.id}")
+        expect(current_path).to eq("/pets/#{pet_1.id}/applications/#{application_2.id}")
       end
 
       within(".applicant_info") do
