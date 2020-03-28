@@ -1,37 +1,36 @@
 require 'rails_helper'
 
-
-describe "as a visitor" do
+describe "applications as a visitor" do
   before(:each) do
     @shelter_1 = Shelter.create(name:    "Dumb Friends League",
-      address: "123 Fake Street",
-      city:    "Castle Rock",
-      state:   "CO",
-      zip:     "80104")
+                                address: "123 Fake Street",
+                                city:    "Castle Rock",
+                                state:   "CO",
+                                zip:     "80104")
 
     @pet_1 = @shelter_1.pets.create(name: "Buddy",
-      approximate_age: 6,
-      sex: "Male",
-      image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/single-minded-royalty-free-image-997141470-  1558379890.jpg?crop=0.671xw:1.00xh;0.0847xw,0&resize=640:*",
-      description: "Big things to come in big packages, you better be prepared to play with Buddy all day long!",
-      adoption_status: "Adoptable")
+                                    approximate_age: 6,
+                                    sex: "Male",
+                                    image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/single-minded-royalty-free-image-997141470-  1558379890.jpg?crop=0.671xw:1.00xh;0.0847xw,0&resize=640:*",
+                                    description: "Big things to come in big packages, you better be prepared to play with Buddy all day long!",
+                                    adoption_status: "Adoptable")
 
     @pet_2 = @shelter_1.pets.create(name: "Ruby",
-      approximate_age: 2,
-      sex: "Male",
-      image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/single-minded-royalty-free-image-997141470-1558379890.jpg?crop=0.671xw:1.00xh;0.0847xw,0&resize=640:*",
-      description: "Test Description",
-      adoption_status: "Adoptable")
+                                    approximate_age: 2,
+                                    sex: "Male",
+                                    image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/single-minded-royalty-free-image-997141470-1558379890.jpg?crop=0.671xw:1.00xh;0.0847xw,0&resize=640:*",
+                                    description: "Test Description",
+                                    adoption_status: "Adoptable")
 
     @pet_3 = @shelter_1.pets.create(name: "River",
-      approximate_age: 4,
-      sex: "Female",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRATvV2mL0wWqhpNXmsZtbsT4Zi8ElvfrE52Wvifx2C6N4P-M2S",
-      description: "Test Description",
-      adoption_status: "Adoptable")
+                                    approximate_age: 4,
+                                    sex: "Female",
+                                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRATvV2mL0wWqhpNXmsZtbsT4Zi8ElvfrE52Wvifx2C6N4P-M2S",
+                                    description: "Test Description",
+                                    adoption_status: "Adoptable")
 
-      session = Favorite.new([@pet_1, @pet_2, @pet_3])
-      allow_any_instance_of(ApplicationController).to receive(:favorites).and_return(session)
+    session = Favorite.new([@pet_1, @pet_2, @pet_3])
+    allow_any_instance_of(ApplicationController).to receive(:favorites).and_return(session)
   end
 
   it "can create a new application" do
