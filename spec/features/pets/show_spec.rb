@@ -91,7 +91,7 @@ describe "on the pets show page" do
         expect(page).to have_link(application_2.name)
         click_link(application_2.name)
 
-        expect(current_path).to eq("/pets/#{pet_1.id}/applications/#{application_2.id}")
+        expect(current_path).to eq("/applications/#{application_2.id}")
       end
 
       within(".applicant_info") do
