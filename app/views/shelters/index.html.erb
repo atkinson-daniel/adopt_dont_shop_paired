@@ -2,11 +2,13 @@
 <h4><a href="shelters/new">New Shelter</a></h4>
 
 <% @shelters.each do |shelter| %>
-  <section>
+  <section id="shelter-<%= shelter.id %>">
     <h2><a href="/shelters/<%= shelter.id %>"><%= shelter.name %></a></h2>
     <h5>
       <%= link_to "Update Shelter", "/shelters/#{shelter.id}/edit" %>
-      <%= link_to "Delete Shelter", "/shelters/#{shelter.id}", method: :delete %>
+      <% if !shelter.any_pending_pets? %>
+        <%= link_to "Delete Shelter", "/shelters/#{shelter.id}", method: :delete %>
+      <% end %>
     </h5>
   </section>
 <% end %>

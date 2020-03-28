@@ -9,7 +9,9 @@
 
 <div>
   <%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit" %>
-  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
+  <% if !@shelter.any_pending_pets? %>
+    <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
+  <% end %>
 </div><br>
 
 <h2>Read Our Reviews!</h2>
