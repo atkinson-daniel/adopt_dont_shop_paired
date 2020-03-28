@@ -7,7 +7,8 @@ class Shelter < ApplicationRecord
     pets.any? { |pet| pet[:adoption_status] == "Pending" }
   end
 
-  def destroy_pets
+  def destroy_associated
     pets.destroy_all
+    reviews.destroy_all
   end
 end
