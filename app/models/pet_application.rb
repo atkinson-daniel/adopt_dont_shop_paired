@@ -3,6 +3,10 @@ class PetApplication < ApplicationRecord
   belongs_to :application
 
   def self.info(application, pet)
-    PetApplication.create(application: application, pet: pet)
+    PetApplication.create(application_id: application.id, pet_id: pet['id'])
+  end
+
+  def pet_name
+    pet.name
   end
 end

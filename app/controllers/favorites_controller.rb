@@ -2,6 +2,7 @@ class FavoritesController < ApplicationController
 
   def index
     @pets = favorites.all_favorited_pets
+    @pets_applied_for = PetApplication.all
   end
 
   def update
