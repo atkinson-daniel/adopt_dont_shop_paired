@@ -21,13 +21,12 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:review_id])
-    @review.update(review_params)
-      if @review.save
-        redirect_to "/shelters/#{@review.shelter.id}"
-      else
-        flash[:notice] = "Review not saved: Required information missing."
-        render :edit
-      end
+    if @review.update(review_params)
+      redirect_to "/shelters/#{@review.shelter.id}"
+    else
+      flash[:notice] = "Review not saved: Required fields are empty."
+      render :edit
+    end
   end
 
   def destroy

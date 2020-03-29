@@ -1,4 +1,7 @@
-<h4><%= link_to "Shelter's Pets", "/shelters/#{@shelter.id}/pets" %></h4>
+<h3><%= link_to "Shelter's Pets (#{@shelter.count_of_pets})", "/shelters/#{@shelter.id}/pets" %></h3>
+
+Number of Applications: <%= @shelter.count_of_applications %><br><br>
+
 <h1><%= @shelter.name %></h1>
 <p>
   <%= @shelter.address %>,<br>
@@ -9,13 +12,16 @@
 
 <div>
   <%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit" %>
-  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
+  <% if !@shelter.any_pending_pets? %>
+    <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
+  <% end %>
 </div><br>
 
 <h2>Read Our Reviews!</h2>
+<div>Average Review Rating: <%= @shelter.average_rating %><div><br><br>
 <% @reviews.each do |review| %>
   <div>
-    <p><%= review.title %></p>
+    <h4><%= review.title %></h4>
     <p>Rating <%= review.rating %></p>
     <p>"<%= review.content %>"</p>
     <% if !review.picture.nil? %>
