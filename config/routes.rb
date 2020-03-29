@@ -39,5 +39,5 @@ Rails.application.routes.draw do
   get "/pets/:pet_id/applications", to: "pet_applications#index"
   post "/applications", to: "applications#create"
 
-  resources :pet_applications, only: [:update]
+  resources :pet_applications, only: [:update, :destroy]
 end
