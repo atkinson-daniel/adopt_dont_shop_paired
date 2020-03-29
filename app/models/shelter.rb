@@ -11,4 +11,21 @@ class Shelter < ApplicationRecord
     pets.destroy_all
     reviews.destroy_all
   end
+
+  def average_rating
+    rating = reviews.select(:rating).average(:rating)
+    rating.to_f.round(1)
+  end
+
+  def count_of_pets
+    pets.count
+  end
+
+  def count_of_applications
+    counter = 0
+    pets.each do |pet|
+      counter += pet.applications.count
+    end
+    counter
+  end
 end
