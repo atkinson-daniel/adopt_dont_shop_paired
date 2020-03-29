@@ -65,4 +65,31 @@ describe "applications show page" do
 
     expect(page).to have_content("No more applications can be approved for #{@pet_1.name} at this time")
   end
+
+  it "can unapprove an application" do
+    visit "/applications/#{@application_1.id}"
+
+    within("#pet_application_#{@pet_1.id}") do
+      click_link "Approve Application"
+    end
+
+    visit "/applications/#{@application_1.id}"
+
+    within("#pet_application_#{@pet_1.id}") do
+      expect(page).to have_link("Unapprove Application")
+      expect(page).to_not have_link("Approve Application")
+    end
+
+    click_link "Unapprove Application"
+    expect(current_path).to eq("/applications/#{@application_1.id}")
+
+    within("#pet_application_#{@pet_1.id}") do
+      expect(page).to_not have_link("Unapprove Application")
+      expect(page).to have_link("Approve Application")
+    end
+
+    visit "/pets/#{@pet_1.id}"
+    expect(page).to have_content("Adoption Status: Adoptable")
+    expect(page).to_not have_content("Adoption Status: Pending")
+  end
 end
