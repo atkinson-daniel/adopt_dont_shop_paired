@@ -83,8 +83,11 @@ describe Pet do
         description: "His name might be King, but he'll treat you like royalty.",
         adoption_status: "Adoptable")
 
-      expect(pet_1.approved?).to eq(true)
-      expect(pet_2.approved?).to eq(false)
+      application_1 = Application.create(name: "Daniel Atkinson", address: "1853 26th St", city: "Boulder", state: "CO", zip: "80302", phone_number: "303-815-0297", description: "I am a animal lover and work from home, so I can constant care and attention to my new friend.")
+      PetApplication.create(application: application_1, pet: pet_1, approved: true)
+
+      expect(pet_1.applied_for?).to eq(true)
+      expect(pet_2.applied_for?).to eq(false)
     end
   end
 end
