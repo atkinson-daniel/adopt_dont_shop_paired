@@ -28,4 +28,8 @@ class Shelter < ApplicationRecord
     end
     counter
   end
+
+  def self.top_rated_shelters
+    Shelter.all.sort_by { |shelter| shelter.average_rating }.reverse.take(3)
+  end
 end

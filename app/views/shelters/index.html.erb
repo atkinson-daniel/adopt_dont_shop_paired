@@ -11,4 +11,11 @@
       <% end %>
     </h5>
   </section>
-<% end %>
+<% end %><br>
+
+<section class="top-rated-shelters">
+  <h3>Top Rated Shelters</h3>
+  <% Shelter.top_rated_shelters.each do |shelter| %>
+    <%= shelter.name %><br>
+  <% end %>
+</section>
