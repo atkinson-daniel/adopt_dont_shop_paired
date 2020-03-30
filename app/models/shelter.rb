@@ -30,6 +30,7 @@ class Shelter < ApplicationRecord
   end
 
   def self.top_rated_shelters
-    Shelter.all.sort_by { |shelter| shelter.average_rating }.reverse.take(3)
+    shelters = Review.joins(:shelter).group('shelter').order('average_rating desc').limit(3).average(:rating)
+    shelters.keys
   end
 end
