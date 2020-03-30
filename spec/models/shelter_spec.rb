@@ -168,5 +168,48 @@ describe Shelter do
         expect(shelter_1.count_of_applications).to eq(3)
       end
     end
+
+    describe "#top_rated_shelters" do
+      it "can limit shelters by the top 3 highest rated" do
+
+        shelter_1 = Shelter.create(name:    "Dumb Friends League",
+                                   address: "123 Fake Street",
+                                   city:    "Castle Rock",
+                                   state:   "CO",
+                                   zip:     "80104")
+        shelter_2 = Shelter.create(name:    "Pawty Please",
+                                   address: "000 Another Fake St",
+                                   city:    "Denver",
+                                   state:   "CO",
+                                   zip:     "80204")
+        shelter_3 = Shelter.create(name:    "Dumb Friends League",
+                                   address: "123 Fake Street",
+                                   city:    "Castle Rock",
+                                   state:   "CO",
+                                   zip:     "80104")
+        shelter_4 = Shelter.create(name:    "Pawty Please",
+                                   address: "000 Another Fake St",
+                                   city:    "Denver",
+                                   state:   "CO",
+                                   zip:     "80204")
+        shelter_5 = Shelter.create(name:    "Dumb Friends League",
+                                   address: "123 Fake Street",
+                                   city:    "Castle Rock",
+                                   state:   "CO",
+                                   zip:     "80104")
+        shelter_6 = Shelter.create(name:    "Pawty Please",
+                                   address: "000 Another Fake St",
+                                   city:    "Denver",
+                                   state:   "CO",
+                                   zip:     "80204")
+
+        shelter_1.reviews.create(title: "Best Animal Shelter", rating: 2, content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.", picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
+        shelter_3.reviews.create(title: "Best Animal Shelter", rating: 5, content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.", picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
+        shelter_4.reviews.create(title: "Best Animal Shelter", rating: 3, content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.", picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
+        shelter_6.reviews.create(title: "Best Animal Shelter", rating: 4, content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.", picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
+
+        expect(Shelter.top_rated_shelters).to eq([shelter_3, shelter_6, shelter_4])
+      end
+    end
   end
 end
