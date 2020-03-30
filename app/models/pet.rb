@@ -16,4 +16,8 @@ class Pet < ApplicationRecord
     pet_app = application.pet_applications.where(application_id: application, pet_id: pet)
     pet_app.first.approved
   end
+
+  def approved?
+    self.adoption_status == "Pending"
+  end
 end
