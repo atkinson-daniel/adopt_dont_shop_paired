@@ -9,4 +9,9 @@ class PetApplication < ApplicationRecord
   def pet_name
     pet.name
   end
+
+  def approve_application
+    self[:approved] = true
+    self.save
+  end
 end

@@ -27,4 +27,10 @@
       <% end %>
     <% end %>
   </section>
+  <section class="pets-pending">
+    <h3> Pets with Approved Applications </h3>
+      <% Pet.approved_pet_apps.each do |pet| %>
+        <%= link_to pet.name, "/pets/#{pet.id}" %><br><br>
+      <% end %>
+  </section>
 </div>
