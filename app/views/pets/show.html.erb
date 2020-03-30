@@ -22,6 +22,7 @@
   <% else %>
     <%= link_to "Change to Adoptable", "/pets/#{@pet.id}/adoptable", method: :patch %>
   <% end %>
-  <li><%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %></li>
-
+  <% if !@pet.applied_for? %>
+    <li><%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %>
+  <% end %>
 </div>
