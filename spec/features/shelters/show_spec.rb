@@ -77,7 +77,7 @@ describe "shelter page" do
 
   end
 
-  it "can filter results by rating/date" do
+  xit "can filter results by rating/date" do
     shelter_1 = Shelter.create(name:    "Dumb Friends League",
                                address: "123 Fake Street",
                                city:    "Castle Rock",

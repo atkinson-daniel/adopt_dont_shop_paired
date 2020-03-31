@@ -1,6 +1,6 @@
 <h2>Create Pet</h2>
 
-<%= render partial: 'form', locals: { path: "shelters/#{@shelter.id}/pets",
-                                      method: :get,
+<%= render partial: 'form', locals: { path: "/shelters/#{@shelter.id}/pets",
+                                      method: :post,
                                       button_name: "Create Pet",
                                       pet: Pet.new} %>

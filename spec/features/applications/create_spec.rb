@@ -58,7 +58,7 @@ describe "applications as a visitor" do
     click_button("Submit Application")
 
     expect(current_path).to eq("/favorites")
-    expect(page).to have_content("Your application for ... has been submitted.")
+    expect(page).to have_content("Your application for #{@pet_1.name} and #{@pet_2.name} has been submitted.")
 
     within(".favorite-pets") do
       expect(page).to have_no_content(@pet_1.name)
@@ -80,6 +80,6 @@ describe "applications as a visitor" do
 
     click_button("Submit Application")
 
-    expect(page).to have_content("Unable to submit application: Required fields are empty.")
+    expect(page).to have_content("Unable to create application: Name can't be blank.")
   end
 end

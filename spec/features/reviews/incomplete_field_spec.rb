@@ -23,7 +23,7 @@ describe "edit reviews form" do
 
     click_on "Save Review"
 
-    expect(page).to have_content("Review not saved: Required fields are empty.")
+    expect(page).to have_content("Unable to save review: Title can't be blank.")
     expect(page).to have_button("Save Review")
 
   end

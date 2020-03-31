@@ -1,5 +1,5 @@
 <h1><%= @shelter.name %> - Our Pets (<%= @shelter.pets.count %>)</h1>
-<a href="/shelters/<%= @shelter.id %>/pets/new">Create Pet</a>
+<%= link_to "Create Pet", "/shelters/#{@shelter.id}/pets/new" %>
 
 <% @shelter.pets.each do |pet| %>
   <ul>

@@ -32,15 +32,6 @@ describe "on the pets show page" do
     expect(page).to have_content(pet_1.sex)
     expect(page).to have_content(pet_1.adoption_status)
     expect(page).to have_no_content(pet_2.name)
-
-    expect(page).to have_no_link("Change to Adoptable")
-    click_link("Change to Adoption Pending")
-
-    expect(current_path).to eq("/pets/#{pet_1.id}")
-    expect(page).to have_link("Change to Adoptable")
-    expect(page).to have_no_link("Change to Adoption Pending")
-
-    click_link("Change to Adoptable")
   end
 
   it "there's a link to view all applications, all applicants names which link to application show page" do

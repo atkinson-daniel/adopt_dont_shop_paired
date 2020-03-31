@@ -10,4 +10,6 @@ class Application < ApplicationRecord
   def self.application_by_id(app_id)
     Application.find(params[:app_id])
   end
+
+
 end

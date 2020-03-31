@@ -33,18 +33,6 @@ class PetsController < ApplicationController
     redirect_to "/pets/#{@pet.id}"
   end
 
-  def adoption_status_pending
-    @pet = Pet.find(params[:pet_id])
-    @pet.update(adoption_status: "Pending")
-    redirect_to "/pets/#{@pet.id}"
-  end
-
-  def adoption_status_adoptable
-    @pet = Pet.find(params[:pet_id])
-    @pet.update(adoption_status: "Adoptable")
-    redirect_to "/pets/#{@pet.id}"
-  end
-
   def destroy
     Pet.destroy(params[:id])
     favorites.delete_pet(params[:id])
@@ -52,11 +40,9 @@ class PetsController < ApplicationController
   end
 
   private
+
   def pet_params_new
     params[:adoption_status] = "Adoptable"
     params.permit(:image, :name, :description, :approximate_age, :sex, :adoption_status)
-  end
-
-  def change_adoption_status
   end
 end

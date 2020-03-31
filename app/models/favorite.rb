@@ -21,7 +21,6 @@ class Favorite
     params.each do |key, value|
       if value == "applied"
         pet = @contents.find { |pet| pet['id'] == key.to_i }
-        PetApplication.info(application, pet)
         @contents.delete(pet)
         PetApplication.info(application, pet)
       end
