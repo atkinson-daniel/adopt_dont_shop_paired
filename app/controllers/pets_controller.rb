@@ -14,8 +14,13 @@ class PetsController < ApplicationController
 
   def create
     @shelter = Shelter.find(params[:shelter_id])
-    @shelter.pets.create(pet_params_new)
-    redirect_to ("/shelters/#{@shelter.id}/pets")
+    pet = @shelter.pets.create(pet_params_new)
+    if pet.save
+      redirect_to ("/shelters/#{@shelter.id}/pets")
+    else
+      flash[:notice] = "Unable to create pet: #{pet.errors.full_messages.to_sentence}."
+      render :new
+    end
   end
 
   def edit
@@ -42,6 +47,7 @@ class PetsController < ApplicationController
 
   def destroy
     Pet.destroy(params[:id])
+    favorites.delete_pet(params[:id])
     redirect_to "/pets"
   end
 

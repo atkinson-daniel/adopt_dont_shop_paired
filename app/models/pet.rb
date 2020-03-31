@@ -16,8 +16,13 @@ class Pet < ApplicationRecord
     pet_app = application.pet_applications.where(application_id: application, pet_id: pet)
     pet_app.first.approved
   end
-
+  
   def self.approved_pet_apps
     Pet.joins(:pet_applications).where('pet_applications.approved = true')
+
+  def applied_for?
+    apps = PetApplication.where(pet_id: self.id)
+    return false if apps.none?
+    true
   end
 end
