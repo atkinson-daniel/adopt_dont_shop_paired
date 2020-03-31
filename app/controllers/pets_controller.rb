@@ -1,7 +1,7 @@
 class PetsController < ApplicationController
 
   def index
-    @pets = Pet.all.sort_by { |pet| pet.adoption_status }
+    @pets = Pet.order('adoption_status')
   end
 
   def show
@@ -30,7 +30,12 @@ class PetsController < ApplicationController
   def update
     @pet = Pet.find(params[:pet_id])
     @pet.update(pet_params_new)
-    redirect_to "/pets/#{@pet.id}"
+    if @pet.save
+      redirect_to "/pets/#{@pet.id}"
+    else
+      flash[:notice] = "Unable to update pet: #{@pet.errors.full_messages.to_sentence}."
+      render :edit
+    end
   end
 
   def destroy
