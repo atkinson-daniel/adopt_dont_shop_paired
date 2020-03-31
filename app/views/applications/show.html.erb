@@ -6,14 +6,14 @@
   <li>State: <%= @application.state %></li>
   <li>Zip: <%= @application.zip %></li>
   <li>Phone Number: <%= @application.phone_number %></li>
-  <li>Description: <%= @application.description %></li>
+  <li>Description: <%= @application.description %></li><br>
   <li>Pets Applied for: </li><% @application.pets.each do |pet| %>
     <section id="pet_application_<%= pet.id %>">
       <%= link_to pet.name, "/pets/#{pet.id}" %>
       <% if pet.approved_pet_app?(@application, pet) %>
-        <%= link_to "Unapprove Application", pet_application_path(pet, app_id: @application), method: :delete%><br>
+        <%= link_to "Unapprove Application", pet_application_path(pet, app_id: @application), method: :delete, class: "box-links"%><br>
       <% else  %>
-        <%= link_to "Approve Application", pet_application_path(pet, app_id: @application), method: :patch%><br>
+        <%= link_to "Approve Application", pet_application_path(pet, app_id: @application), method: :patch, class: "box-links"%><br>
       <% end %>
     </section>
   <% end %>
