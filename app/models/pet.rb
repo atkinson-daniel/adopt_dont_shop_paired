@@ -8,8 +8,7 @@ class Pet < ApplicationRecord
     app = Application.find(params[:app_id])
     pet_app = PetApplication.where(application_id: app, pet_id: self)
     pet_app.update(approved: approved_status)
-    self[:adoption_status] = adoption_status
-    self.save
+    self.update(adoption_status: adoption_status)
   end
 
   def approved_pet_app?(application, pet)

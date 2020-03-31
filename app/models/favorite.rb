@@ -22,7 +22,7 @@ class Favorite
       if value == "applied"
         pet = @contents.find { |pet| pet['id'] == key.to_i }
         @contents.delete(pet)
-        PetApplication.info(application, pet)
+        PetApplication.pet_app_create(application, pet)
       end
     end
   end
