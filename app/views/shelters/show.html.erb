@@ -18,18 +18,22 @@ Number of Applications: <%= @shelter.count_of_applications %><br><br>
 </div><br>
 
 <h2>Read Our Reviews!</h2>
-<div>Average Review Rating: <%= @shelter.average_rating %><div><br><br>
-<% @reviews.each do |review| %>
-  <div>
-    <h4><%= review.title %></h4>
-    <p>Rating <%= review.rating %></p>
-    <p>"<%= review.content %>"</p>
-    <% if !review.picture.nil? %>
-      <p><%= image_tag(review.picture) %></p>
-    <% end %>
-    <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
-    <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %><br><br>
-  </div>
-<% end %>
+<div>Average Review Rating: <%= @shelter.average_rating %><div><br>
+<%= link_to "Highest Rated", "/shelters/#{@shelter.id}?review=desc" %>
+<%= link_to "Lowest Rated", "/shelters/#{@shelter.id}?review=asc" %>
+<section class="review-list"
+  <% @shelter.reviews.each do |review| %>
+    <div>
+      <h4><%= review.title %></h4>
+      <p>Rating <%= review.rating %></p>
+      <p>"<%= review.content %>"</p>
+      <% if !review.picture.nil? %>
+        <p><%= image_tag(review.picture) %></p>
+      <% end %>
+      <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
+      <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %><br><br>
+    </div>
+  <% end %>
+</section>
 
 <%= link_to "Add New Review", "/shelters/#{@shelter.id}/reviews/new" %>

@@ -1,0 +1,15 @@
+<%= form_tag path, method: method do %>
+  <%= label_tag :image %>
+  <%= text_field_tag :image, pet.image %><br>
+  <%= label_tag :name %>
+  <%= text_field_tag :name, pet.name %><br>
+  <%= label_tag :approximate_age %>
+  <%= text_field_tag :approximate_age, pet.approximate_age %><br>
+  <%= label_tag :sex %>
+  <%= text_field_tag :sex, pet.sex %><br><br>
+  <%= label_tag :description %>
+  <%= text_area_tag :description, pet.description %><br>
+  <%= submit_tag button_name %>
+<% end %>
+
+<h4><%= link_to "Go Back", :back %></h4>

@@ -83,4 +83,23 @@ describe "as a visitor" do
       expect(page).to have_link(@pet_2.name)
     end
   end
+
+  it "can see a list of pets that have an approved application" do
+
+    application_1 = Application.create(name: "Daniel Atkinson", address: "1853 26th St", city: "Boulder", state: "CO", zip: "80302", phone_number: "303-815-0297", description: "I am a animal lover and work from home, so I can constant care and attention to my new friend.")
+    application_2 = Application.create(name: "David Tran", address: "72 Hallow St", city: "Castle Rock", state: "CO", zip: "80104", phone_number: "303-566-9242", description: "I'm eager to bring a new friend into my home.")
+    pet_app_1 = PetApplication.create(application: application_1, pet: @pet_1)
+    pet_app_2 = PetApplication.create(application: application_2, pet: @pet_3)
+
+    pet_app_1.approve_application
+    pet_app_2.approve_application
+
+    visit "/favorites"
+
+    within(".pets-pending") do
+      expect(page).to have_content("Pets with Approved Applications")
+      expect(page).to have_link(@pet_1.name)
+      expect(page).to have_link(@pet_3.name)
+    end
+  end
 end

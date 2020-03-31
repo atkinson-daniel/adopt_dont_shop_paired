@@ -1,17 +1,7 @@
 <h2>Update Information</h2>
 
-<%= form_tag "/pets/#{@pet.id}", method: :patch do %>
-  <%= label_tag :image %>
-  <%= text_field_tag :image, @pet.image %><br>
-  <%= label_tag :name %>
-  <%= text_field_tag :name, @pet.name %><br>
-  <%= label_tag :description %>
-  <%= text_field_tag :description, @pet.description %><br>
-  <%= label_tag :approximate_age %>
-  <%= text_field_tag :approximate_age, @pet.approximate_age %><br>
-  <%= label_tag :sex %>
-  <%= text_field_tag :sex, @pet.sex %><br><br>
-  <%= submit_tag "Update Pet" %>
-<% end %>
 
-<h4><%= link_to "Go Back", :back %></h4>
+<%= render partial: 'form', locals: { path: "/pets/#{@pet.id}",
+                                      method: :patch,
+                                      button_name: "Update Pet",
+                                      pet: @pet} %>

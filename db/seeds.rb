@@ -18,10 +18,10 @@ pet_3 = shelter_1.pets.create(name: "Zula", approximate_age: 4, sex: "Female", i
 pet_4 = shelter_2.pets.create(name: "River", approximate_age: 2, sex: "Male", image: "https://www.thelocal.fr/userdata/images/article/4b4e0dcd1ec9a4cab7f2c5923a674e1fbbaded4e64c4d2c34865dea52bfcd1ee.jpg", description: "River loves the water and sticks", adoption_status: "Pending")
 
 shelter_1.reviews.create(title: "Best Animal Shelter", rating: 5, content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.", picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
-shelter_1.reviews.create(title: "Found My Forever Friend", rating: 4, content: "Today I brought home Simba. Very excited for him to be apart of our family.", picture:"https://www.mersive.com/wp-content/uploads/2019/07/Simba-hike-1024x768.jpg")
+shelter_1.reviews.create(title: "Found My Forever Friend", rating: 2, content: "Today I brought home Simba. Very excited for him to be apart of our family.", picture:"https://www.mersive.com/wp-content/uploads/2019/07/Simba-hike-1024x768.jpg")
 
 shelter_2.reviews.create(title: "Meow-tastic", rating: 5, content: "Wide selection of cats. I wanted to bring home all of them!")
-shelter_2.reviews.create(title: "Best Bunnies", rating: 4, content: "Helpful staff, but small selection of bunnies. Luckily I fell in love with Marshmelone", picture:"https://images.unsplash.com/photo-1452857297128-d9c29adba80b?ixlib=rb-1.2.1&dpr=2&auto=format&fit=crop&w=416&h=312&q=60")
+shelter_2.reviews.create(title: "Best Bunnies", rating: 3, content: "Helpful staff, but small selection of bunnies. Luckily I fell in love with Marshmelone", picture:"https://images.unsplash.com/photo-1452857297128-d9c29adba80b?ixlib=rb-1.2.1&dpr=2&auto=format&fit=crop&w=416&h=312&q=60")
 
 PetApplication.create(application: application_1, pet: pet_1)
 PetApplication.create(application: application_2, pet: pet_2)

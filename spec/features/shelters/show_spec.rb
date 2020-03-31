@@ -76,4 +76,26 @@ describe "shelter page" do
     expect(page).to have_content("Average Review Rating: 4.0")
 
   end
+
+  it "can filter results by rating/date" do
+    shelter_1 = Shelter.create(name:    "Dumb Friends League",
+                               address: "123 Fake Street",
+                               city:    "Castle Rock",
+                               state:   "CO",
+                               zip:     "80104")
+    review_1 = shelter_1.reviews.create(title: "Best Animal Shelter",
+                                        rating: 5,
+                                        content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.",
+                                        picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
+    review_2 = shelter_1.reviews.create(title: "Found My Forever Friend",
+                                        rating: 3,
+                                        content: "Today I brought home Simba. Very excited for him to be apart of our family.",
+                                        picture:"")
+
+    visit "/shelters/#{shelter_1.id}"
+    click_link("Highest Rated")
+    expect(review_1.title).to appear_before(review_2.title)
+    click_link("Lowest Rated")
+    expect(review_2.title).to appear_before(review_1.title)
+  end
 end

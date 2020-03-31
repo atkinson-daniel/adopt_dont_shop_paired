@@ -45,6 +45,7 @@ RSpec.describe "When a visitor clicks Add New Review from shelter's show page", 
     expect(page).to have_css("img[src*='https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg']")
 
   end
+
   it 'cannot create review without title, rating, or content' do
     shelter_1 = Shelter.create(name:    "Dumb Friends League",
                                address: "123 Fake Street",
@@ -58,5 +59,23 @@ RSpec.describe "When a visitor clicks Add New Review from shelter's show page", 
 
     expect(page).to have_content("Review not created. Title, rating, and content are required.")
     expect(page).to have_button('Submit Review')
+  end
+
+  it "has a default picture if picture is left nil" do
+    shelter_1 = Shelter.create(name:    "Dumb Friends League",
+                               address: "123 Fake Street",
+                               city:    "Castle Rock",
+                               state:   "CO",
+                               zip:     "80104")
+
+    visit "/shelters/#{shelter_1.id}"
+    click_link("Add New Review")
+
+    fill_in :title, with: "Found My Forever Friend"
+    fill_in :rating, with: 4
+    fill_in :content, with: "Today I brought home Simba. Very excited for him to be apart of our family."
+    click_button("Submit Review")
+
+    expect(page).to have_css("img[src*='https://i0.wp.com/happening-news.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-09-at-2.57.27-PM.png?resize=543%2C531&ssl=1']")
   end
 end

@@ -16,6 +16,9 @@
           </figure>
         </div>
       <% end %>
+    <section>
+      <%= link_to "New Application", "/applications/new" %>
+    </section>
     </section>
       <div class="container-fluid"><%= link_to "Remove All Favorites", "/favorites", method: :delete %></div>
   <% end %>
@@ -26,5 +29,11 @@
         <p><%= link_to application.pet_name, "/pets/#{application.pet_id}" %></p>
       <% end %>
     <% end %>
+  </section>
+  <section class="pets-pending">
+    <h3> Pets with Approved Applications </h3>
+      <% Pet.approved_pet_apps.each do |pet| %>
+        <%= link_to pet.name, "/pets/#{pet.id}" %><br><br>
+      <% end %>
   </section>
 </div>
