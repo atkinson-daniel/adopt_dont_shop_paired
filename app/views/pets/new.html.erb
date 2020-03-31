@@ -1,17 +1,6 @@
 <h2>Create Pet</h2>
 
-<%= form_tag "/shelters/#{@shelter.id}/pets" do %>
-  <%= label_tag :image %>
-  <%= text_field_tag :image %><br>
-  <%= label_tag :name %>
-  <%= text_field_tag :name %><br>
-  <%= label_tag :description %>
-  <%= text_field_tag :description %><br>
-  <%= label_tag :approximate_age %>
-  <%= text_field_tag :approximate_age %><br>
-  <%= label_tag :sex %>
-  <%= text_field_tag :sex %><br>
-  <%= submit_tag "Create Pet" %>
-<% end %>
-
-<%= link_to "Go Back", :back %>
+<%= render partial: 'form', locals: { path: "shelters/#{@shelter.id}/pets",
+                                      method: :get,
+                                      button_name: "Create Pet",
+                                      pet: Pet.new} %>
