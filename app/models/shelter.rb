@@ -33,4 +33,13 @@ class Shelter < ApplicationRecord
     shelters = Review.joins(:shelter).group('shelter').order('average_rating desc').limit(3).average(:rating)
     shelters.keys
   end
+
+  def sort_reviews(params)
+    require "pry"; binding.pry
+    if params[:review] == "desc"
+      reviews.order(rating: :desc, created_at: :desc)
+    else
+      reviews.order(:rating, :created_at)
+    end
+  end
 end
