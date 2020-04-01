@@ -203,5 +203,25 @@ describe Shelter do
         expect(Shelter.top_rated_shelters).to eq([shelter_2, shelter_4, shelter_1])
       end
     end
+
+    describe "#sort_reviews" do
+      it "sorts reviews based on ratings, order determined by query parameter" do
+        shelter_1 = Shelter.create(name:    "one",
+                                   address: "123 Fake Street",
+                                   city:    "Castle Rock",
+                                   state:   "CO",
+                                   zip:     "80104")
+        review_1 = shelter_1.reviews.create(title: "Best Animal Shelter", rating: 1, content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.", picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
+        review_2 = shelter_1.reviews.create(title: "Best Animal Shelter", rating: 5, content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.", picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
+        review_3 = shelter_1.reviews.create(title: "Best Animal Shelter", rating: 4, content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.", picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
+        review_4 = shelter_1.reviews.create(title: "Best Animal Shelter", rating: 2, content: "I adopted Brownie and she was well trained. The staff are friendly and helpful.", picture:"https://m.media-amazon.com/images/M/MV5BMjg3MWFlMTQtZWNkYS00NDdiLWI4MzYtYmExYzdkMDlhMWY4XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg")
+
+        params = {review: "desc"}
+        expect(shelter_1.sort_reviews(params)).to eq([review_2, review_3, review_4, review_1])
+
+        params = {review: "asc"}
+        expect(shelter_1.sort_reviews(params)).to eq([review_1, review_4, review_3, review_2])
+      end
+    end
   end
 end
