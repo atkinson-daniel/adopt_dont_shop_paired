@@ -55,9 +55,10 @@ RSpec.describe "When a visitor clicks Add New Review from shelter's show page", 
 
     visit "/shelters/#{shelter_1.id}"
     click_link("Add New Review")
+    fill_in :rating, with: 5
     click_button("Submit Review")
 
-    expect(page).to have_content("Unable to create review: Title can't be blank, Rating can't be blank, and Content can't be blank.")
+    expect(page).to have_content("Unable to create review: Title can't be blank and Content can't be blank.")
     expect(page).to have_button('Submit Review')
   end
 
@@ -77,5 +78,23 @@ RSpec.describe "When a visitor clicks Add New Review from shelter's show page", 
     click_button("Submit Review")
 
     expect(page).to have_css("img[src*='https://i0.wp.com/happening-news.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-09-at-2.57.27-PM.png?resize=543%2C531&ssl=1']")
+  end
+
+  it "can only enter a rating between 1 and 5" do
+    shelter_1 = Shelter.create(name:    "Dumb Friends League",
+                               address: "123 Fake Street",
+                               city:    "Castle Rock",
+                               state:   "CO",
+                               zip:     "80104")
+
+    visit "/shelters/#{shelter_1.id}"
+    click_link("Add New Review")
+
+    fill_in :title, with: "Found My Forever Friend"
+    fill_in :rating, with: 6
+    fill_in :content, with: "Today I brought home Simba. Very excited for him to be apart of our family."
+    click_button("Submit Review")
+
+    expect(page).to have_content("Unable to create review: Rating can only be between 1-5.")
   end
 end
