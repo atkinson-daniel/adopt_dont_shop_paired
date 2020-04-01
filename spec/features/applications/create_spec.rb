@@ -60,9 +60,10 @@ describe "applications as a visitor" do
     expect(current_path).to eq("/favorites")
     expect(page).to have_content("Your application for #{@pet_1.name} and #{@pet_2.name} has been submitted.")
 
+    expect(page).to_not have_css("#favorite-pet-#{@pet_1.id}")
+    expect(page).to_not have_css("#favorite-pet-#{@pet_2.id}")
+    
     within(".favorite-pets") do
-      expect(page).to have_no_content(@pet_1.name)
-      expect(page).to have_no_content(@pet_2.name)
       expect(page).to have_content(@pet_3.name)
     end
   end

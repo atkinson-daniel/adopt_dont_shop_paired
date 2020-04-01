@@ -54,6 +54,7 @@ describe "as a visitor" do
     expect(page).to have_no_content(@pet_2.name)
     expect(page).to have_no_content(@pet_3.name)
     expect(page).to have_content("Favorites (0)")
+    expect(page).to have_content('You have no favorited pets')
   end
 
   it "can see a list of all the pets that have at least one application on them" do
@@ -73,10 +74,7 @@ describe "as a visitor" do
 
     click_button("Submit Application")
 
-    within(".favorite-pets") do
-      expect(page).to have_no_content(@pet_1.name)
-      expect(page).to have_no_content(@pet_2.name)
-    end
+    expect(page).to_not have_css(".favorite-pets")
 
     within(".pets-applied-for") do
       expect(page).to have_link(@pet_1.name)
@@ -101,5 +99,16 @@ describe "as a visitor" do
       expect(page).to have_link(@pet_1.name)
       expect(page).to have_link(@pet_3.name)
     end
+  end
+
+  it "returns a message saying you have no favorites if you haven't favorited a pet" do
+    visit "/pets/#{@pet_1.id}"
+    click_on("Remove from Favorites")
+
+    visit "/pets/#{@pet_2.id}"
+    click_on("Remove from Favorites")
+
+    visit "/favorites"
+    expect(page).to have_content('You have no favorited pets')
   end
 end

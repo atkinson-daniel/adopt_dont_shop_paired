@@ -1,10 +1,10 @@
 <h2 class="container-fluid">Favorited Pets</h2>
-<div class="container-fluid"><h4><%= link_to "Adopt Favorited Pets", "/applications/new" %></h4><div><br>
 <div class="flex-row container-fluid">
-  <% if @pets == 0 %>
-    <div class="container-fluid">You have no favorited pets</div>
+  <% if @pets == [] %>
+    <p>You have no favorited pets</p>
   <% else %>
     <section class="favorite-pets">
+      <div class="container-fluid"><h4><%= link_to "Adopt Favorited Pets", "/applications/new" %></h4><div><br>
       <% @pets.each do |pet| %>
       <div class="row d-flex" id="favorite-pet-<%= pet["id"] %>">
         <figure class="col-lg-6 d-flex">
