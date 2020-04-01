@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to "/shelters/#{@review.shelter.id}"
     else
-      flash[:notice] = "Unable to save review: #{@review.errors.full_messages.to_sentence}."
+      flash.now[:notice] = "Unable to save review: #{@review.errors.full_messages.to_sentence}."
       render :edit
     end
   end
