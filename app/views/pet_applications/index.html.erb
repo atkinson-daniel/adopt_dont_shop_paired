@@ -1,0 +1,12 @@
+<h2>All Applications</h2>
+<% if @applications.empty? %>
+  This pet currently has no applications. :(
+<% else %>
+  <section class="list-of-applicants">
+    <% @applications.each do |application| %>
+      <section id="application-<%= application.id %>">
+      <%= link_to application.name, "/applications/#{application.id}" %>
+    <% end %>
+  </section>
+<% end %><br>
+<%= link_to "Go Back", :back %>

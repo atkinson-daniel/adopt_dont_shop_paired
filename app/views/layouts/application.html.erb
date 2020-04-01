@@ -13,9 +13,11 @@
     <%= render template: 'layouts/header' %>
 
     <% flash.each do |type, message| %>
-      <p><%= message %></p>
+      <p class="alert alert-primary" role="alert"><%= message %></p>
     <% end %>
 
-    <%= yield %>
+    <div class="route-outlet">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,18 +1,22 @@
-<h1 class="container-fluid">Our Pets</h1>
+<h2 class="container-fluid">Our Pets</h2>
 <div class="flex-row container-fluid">
-    <div class="row d-flex">
-      <% @pets.each do |pet| %>
-      <figure class="col-lg-6 d-flex">
+  <div class="row d-flex">
+    <% @pets.each do |pet| %>
+    <div class="col-6">
+      <figure class="d-flex all-pet-imgs">
         <img src="<%= pet.image %>"><br>
-        <figcaption class="container">
-          <li>Name: <%= pet.name %></li>
+        <ul>
+          <li><%= link_to pet.name, "/pets/#{pet.id}" %></li>
           <li>Sex: <%= pet.sex %></li>
           <li>Approximate Age: <%= pet.approximate_age %></li>
-          <li>Currently Located At: <%= pet.shelter.name %></li>
-          <li><%= link_to "Update Pet", "/pets/#{pet.id}/edit", method: :get %>
-          <li><%= link_to "Delete Pet", "/pets/#{pet.id}", method: :delete %>
-        </figcaption>
+          <li>Currently Located At: <%= link_to pet.shelter.name , "/shelters/#{pet.shelter.id}" %></li>
+          <li><%= link_to "Update Pet", "/pets/#{pet.id}/edit", method: :get, class: "box-links" %></li>
+          <% if !pet.applied_for? %>
+            <li><%= link_to "Delete Pet", "/pets/#{pet.id}", method: :delete, class: "box-links" %></li>
+          <% end %>
+        </ul>
       </figure>
-      <% end %>
     </div>
+    <% end %>
+  </div>
 </div>

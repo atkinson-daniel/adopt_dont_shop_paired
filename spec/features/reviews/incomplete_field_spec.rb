@@ -17,14 +17,13 @@ describe "edit reviews form" do
     visit "/shelters/#{shelter_1.id}"
 
     find("[href='/shelters/#{shelter_1.id}/reviews/#{review_1.id}/edit']").click
-
     fill_in :title, with: ""
     fill_in :content, with: "Test Content"
     fill_in :rating, with: 1
 
     click_on "Save Review"
 
-    expect(page).to have_content("Review not saved: Required information missing.")
+    expect(page).to have_content("Unable to save review: Title can't be blank.")
     expect(page).to have_button("Save Review")
 
   end

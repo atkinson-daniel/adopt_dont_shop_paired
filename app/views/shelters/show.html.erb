@@ -1,27 +1,36 @@
-<h4><%= link_to "Shelter's Pets", "/shelters/#{@shelter.id}/pets" %></h4>
+<h2><%= link_to "Shelter's Pets (#{@shelter.count_of_pets})", "/shelters/#{@shelter.id}/pets" %></h2>
+
+Number of Applications: <%= @shelter.count_of_applications %><br><br>
+
 <h1><%= @shelter.name %></h1>
-<p>
   <%= @shelter.address %>,<br>
   <%= @shelter.city %>,
   <%= @shelter.state %>,
   <%= @shelter.zip %>
-</p>
 
 <div>
-  <%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit" %>
-  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
+  <%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit", class:"box-links" %>
+  <% if !@shelter.any_pending_pets? %>
+    <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete, class:"box-links" %>
+  <% end %>
 </div><br>
 
-<h2>Read Our Reviews!</h2>
-<% @reviews.each do |review| %>
-  <div>
-    <p><%= review.title %></p>
-    <p>Rating <%= review.rating %></p>
-    <p>"<%= review.content %>"</p>
-    <p><%= image_tag(review.picture) %></p>
-    <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
-    <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %><br><br>
-  </div>
-<% end %>
+<hr/>​​​​​​​​​​​​​​​​​​​
 
-<%= link_to "Add New Review", "/shelters/#{@shelter.id}/reviews/new" %>
+<h2>Read Our Reviews!</h2>
+<div>Average Review Rating: <%= @shelter.average_rating %><div>
+<%= link_to "Highest Rated", "/shelters/#{@shelter.id}?review=desc", class:"box-links" %>
+<%= link_to "Lowest Rated", "/shelters/#{@shelter.id}?review=asc", class:"box-links" %>
+<%= link_to "Add New Review", "/shelters/#{@shelter.id}/reviews/new", class:"box-links" %><br><br>
+<section class="review-list col-6"
+  <% @shelter.sort_reviews(params).each do |review| %>
+    <li><h3><%= review.title %></h3></li>
+    <li>Rating <%= review.rating %></li>
+    <li>"<%= review.content %>"</li>
+    <figure class="d-flex all-pet-imgs">
+      <%= image_tag(review.picture) if !review.picture.nil? %><br>
+    </figure>
+    <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit", class:"box-links"%>
+    <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete, class:"box-links" %><br><br>
+  <% end %>
+</section>

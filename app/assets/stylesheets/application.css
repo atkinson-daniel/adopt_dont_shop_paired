@@ -27,6 +27,14 @@ li {
    list-style-type: none
  }
 
+ .all-pet-imgs {
+   align-items: center;
+ }
+
+ .navbar-custom {
+    filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));
+ }
+
 .navbar, .nav-link, .navbar-brand{
    background-color: #00203FFF;
    color: #ADEFD1FF;
@@ -36,19 +44,92 @@ li {
    flex-direction: row;
  }
 
-.container {
-   padding: 50px;
+.welcome-container {
+   padding: 50px 50px 50px 35px;
  }
+
+.favorites_container {
+  font-size: 30px;
+  text-align: center
+}
+
+.pet-view-img {
+  width: 40%;
+  object-fit: contain;
+  filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));
+}
+
+.shelter-pet-img {
+  width: 400px;
+  object-fit: contain;
+  filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));
+}
+
+.pet-info {
+  display: flex;
+  margin: 20px 20px 20px 20px;
+}
+
+.pet-links {
+  margin: 25px;
+}
+
+.route-outlet {
+  padding: 15px;
+}
+
+.shelter-container {
+  background-color: #9bdabd;
+  padding: 8px;
+  margin: 10px 0;
+}
+
+.shelter-container a {
+  color: #01203f;
+}
+
+.box-links {
+  padding: 3px;
+  margin-right: 5px;
+  font-size: 12px;
+  background-color: black;
+}
+
+.default-list {
+  margin-left: 30px;
+  padding: 0px;
+}
+
+.default-list-bullets {
+  list-style-type: circle;
+}
+
+a:hover {
+  color: #117a8b;
+}
+
+a.box-links {
+  color: white;
+}
+
+a.box-links:hover {
+  background-color: white;
+  color: #117a8b;
+}
 
 img {
    width: 50%;
-   border-radius: 5%;
- }
-
-figure {
-   float: left;
+   object-fit: contain;
+   filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));;
  }
 
 label {
   width: 200px;
+}
+
+hr{
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }

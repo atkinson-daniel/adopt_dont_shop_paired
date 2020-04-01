@@ -34,12 +34,26 @@ describe "shelters new page" do
     fill_in :city, with: "Test City"
     fill_in :state, with: "Test State"
     fill_in :zip, with: "Test Zip"
-    
+
     click_button("Create Shelter")
 
     expect(current_path).to eq("/shelters")
     expect(page).to have_link(shelter_1.name)
     expect(page).to have_link(shelter_2.name)
     expect(page).to have_link("Test Shelter")
+  end
+
+  it "can't create a shelter without necessary info" do
+    visit "/shelters/new"
+
+    fill_in :name, with: "Test Shelter"
+    fill_in :address, with: "Test Address"
+    fill_in :city, with: "Test City"
+    fill_in :state, with: "Test State"
+
+    click_button("Create Shelter")
+
+    expect(page).to have_content("Unable to create shelter: Zip can't be blank.")
+
   end
 end

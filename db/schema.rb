@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200323200126) do
+ActiveRecord::Schema.define(version: 20200331225712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "applications", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "phone_number"
+    t.string "description"
+  end
+
+  create_table "pet_applications", force: :cascade do |t|
+    t.bigint "application_id"
+    t.bigint "pet_id"
+    t.boolean "approved", default: false
+    t.index ["application_id"], name: "index_pet_applications_on_application_id"
+    t.index ["pet_id"], name: "index_pet_applications_on_pet_id"
+  end
 
   create_table "pets", force: :cascade do |t|
     t.string "name"
@@ -22,7 +40,7 @@ ActiveRecord::Schema.define(version: 20200323200126) do
     t.string "image"
     t.bigint "shelter_id"
     t.string "description"
-    t.string "adoption_status"
+    t.string "adoption_status", default: "Adoptable"
     t.index ["shelter_id"], name: "index_pets_on_shelter_id"
   end
 
@@ -30,8 +48,10 @@ ActiveRecord::Schema.define(version: 20200323200126) do
     t.string "title"
     t.integer "rating"
     t.string "content"
-    t.string "picture"
+    t.string "picture", default: "https://i0.wp.com/happening-news.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-09-at-2.57.27-PM.png?resize=543%2C531&ssl=1"
     t.bigint "shelter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["shelter_id"], name: "index_reviews_on_shelter_id"
   end
 
@@ -43,6 +63,8 @@ ActiveRecord::Schema.define(version: 20200323200126) do
     t.string "zip"
   end
 
+  add_foreign_key "pet_applications", "applications"
+  add_foreign_key "pet_applications", "pets"
   add_foreign_key "pets", "shelters"
   add_foreign_key "reviews", "shelters"
 end

@@ -1,13 +1,21 @@
 <h1><%= @shelter.name %> - Our Pets (<%= @shelter.pets.count %>)</h1>
-<a href="/shelters/<%= @shelter.id %>/pets/new">Create Pet</a>
+<%= link_to "Create Pet", "/shelters/#{@shelter.id}/pets/new", class: "box-links" %>
 
-<% @shelter.pets.each do |pet| %>
-  <ul>
-    <img src="<%= pet.image %>" width="150" height="150" align="left"><br>
-    <li>Name: <%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
-    <li>Sex: <%= pet.sex %></li>
-    <li>Approximate Age: <%= pet.approximate_age %></li><br>
-    <li class="edit"><%= link_to "Update Pet", "/pets/#{pet.id}/edit", method: :get %>
-    <li class="edit"><%= link_to "Delete Pet", "/shelters/#{@shelter.id}/pets/#{pet.id}", method: :delete %>
-  </ul>
-<% end %>
+<div class="flex-row container-fluid">
+  <div class="row d-flex">
+    <% @shelter.pets.each do |pet| %>
+      <div class="pet-info"><br>
+        <figure class="d-flex all-pet-imgs">
+          <img src="<%= pet.image %>" class="shelter-pet-img"><br>
+          <ul>
+            <li>Name: <%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
+            <li>Sex: <%= pet.sex %></li>
+            <li>Approximate Age: <%= pet.approximate_age %></li><br>
+            <li><%= link_to "Update Pet", "/pets/#{pet.id}/edit", method: :get, class: "box-links" %>
+            <li><%= link_to "Delete Pet", "/shelters/#{@shelter.id}/pets/#{pet.id}", method: :delete, class: "box-links" %>
+          </ul>
+        </figure>
+      </div>
+    <% end %>
+  </div>
+</div>

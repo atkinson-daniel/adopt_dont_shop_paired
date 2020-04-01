@@ -35,4 +35,25 @@ describe "shelters page" do
     expect(page).to have_no_content("Castle Rock")
     expect(page).to have_content("New City")
   end
+
+  it "can't update without necessary info" do
+    shelter_1 = Shelter.create(name:    "Dumb Friends League",
+                               address: "123 Fake Street",
+                               city:    "Castle Rock",
+                               state:   "CO",
+                               zip:     "80104")
+
+    visit "/shelters/#{shelter_1.id}"
+
+    click_link("Update Shelter")
+
+    fill_in :name, with: ""
+    fill_in :address, with: "New Address"
+    fill_in :state, with: "New State"
+    fill_in :zip, with: "80204"
+
+    click_button("Save")
+
+    expect(page).to have_content("Unable to update shelter: Name can't be blank.")
+  end
 end

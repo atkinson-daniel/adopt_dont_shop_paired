@@ -1,0 +1,9 @@
+<h2>All Applications</h2>
+
+<section class="list-of-applicants">
+  <% @applications.each do |application| %>
+    <section id="application-<%= application.id %>">
+    <%= link_to application.name, "/applications/#{application.id}" %>
+  <% end %>
+</section>
+<%= link_to "Go Back", :back %>

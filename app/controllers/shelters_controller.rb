@@ -7,13 +7,17 @@ class SheltersController < ApplicationController
   end
 
   def add
-    Shelter.create(shelter_params)
-    redirect_to '/shelters'
+    @shelter = Shelter.new(shelter_params)
+    if @shelter.save
+      redirect_to '/shelters'
+    else
+      flash.now[:notice] = "Unable to create shelter: #{@shelter.errors.full_messages.to_sentence}."
+      render :new
+    end
   end
 
   def show
     @shelter = Shelter.find(params[:id])
-    @reviews = Review.where(shelter_id: @shelter.id)
   end
 
   def edit
@@ -23,16 +27,19 @@ class SheltersController < ApplicationController
   def update
     @shelter = Shelter.find(params[:id])
     @shelter.update(shelter_params)
-    redirect_to "/shelters/#{@shelter.id}"
+    if @shelter.save
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+      flash[:notice] = "Unable to update shelter: #{@shelter.errors.full_messages.to_sentence}."
+      render :edit
+    end
   end
 
   def destroy
+    shelter = Shelter.find(params[:id])
+    shelter.destroy_associated
     Shelter.destroy(params[:id])
     redirect_to "/shelters"
-  end
-
-  def shelter_pets_index
-    @shelter = Shelter.find(params[:shelter_id])
   end
 
   private
