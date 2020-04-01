@@ -8,6 +8,9 @@ class Shelter < ApplicationRecord
   end
 
   def destroy_associated
+    pets.each do |pet|
+      PetApplication.where(pet_id: pet).destroy_all
+    end
     pets.destroy_all
     reviews.destroy_all
   end

@@ -39,15 +39,5 @@ RSpec.describe Application do
         expect(Application.applications_by_pet(params)).to eq([@application_1, @application_2])
       end
     end
-
-    describe "#application_by_id(app_id)" do
-      it "returns a single application from params" do
-
-        params = {app_id: @application_1.id}
-
-        expect(Application.find(params[:app_id])).to eq(@application_1)
-      end
-    end
-
   end
 end
