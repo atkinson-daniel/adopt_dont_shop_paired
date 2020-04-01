@@ -56,7 +56,13 @@ li {
 .pet-view-img {
   width: 40%;
   object-fit: contain;
-  filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));;
+  filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));
+}
+
+.shelter-pet-img {
+  width: 400px;
+  object-fit: contain;
+  filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));
 }
 
 .pet-info {
@@ -89,6 +95,15 @@ li {
   background-color: black;
 }
 
+.default-list {
+  margin-left: 30px;
+  padding: 0px;
+}
+
+.default-list-bullets {
+  list-style-type: circle;
+}
+
 a:hover {
   color: #117a8b;
 }
@@ -110,4 +125,11 @@ img {
 
 label {
   width: 200px;
+}
+
+hr{
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }

@@ -1,6 +1,6 @@
 <h2>New Shelter</h2>
 
 <%= render partial: 'form', locals: { path: "/shelters",
-                                      method: :get,
+                                      method: :post,
                                       button_name: "Create Shelters",
                                       shelter: Shelter.new} %>

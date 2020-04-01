@@ -1,5 +1,5 @@
 <h2 class="container-fluid">Favorited Pets</h2>
-<div class="container-fluid"><%= link_to "Adopt Favorited Pets", "/applications/new" %><div><br>
+<div class="container-fluid"><h4><%= link_to "Adopt Favorited Pets", "/applications/new" %></h4><div><br>
 <div class="flex-row container-fluid">
   <% if @pets == 0 %>
     <div class="container-fluid">You have no favorited pets</div>
@@ -16,22 +16,26 @@
           </figure>
         </div>
       <% end %>
-      <%= link_to "New Application", "/applications/new", class:"box-links" %>
     </section>
+      <%= link_to "New Application", "/applications/new", class:"box-links" %>
       <%= link_to "Remove All Favorites", "/favorites", method: :delete, class:"box-links" %></div><br>
   <% end %>
   <section class="pets-applied-for">
     <h4>Pets with Pending Applications</h4>
     <% unless @pets_applied_for.nil? %>
       <%  @pets_applied_for.each do |application| %>
-        <p><%= link_to application.pet_name, "/pets/#{application.pet_id}" %></p>
+        <ul class="default-list">
+          <li class="default-list-bullets"><%= link_to application.pet_name, "/pets/#{application.pet_id}" %></li>
+        </ul>
       <% end %>
     <% end %>
   </section>
   <section class="pets-pending">
     <h4> Pets with Approved Applications </h4>
       <% Pet.approved_pet_apps.each do |pet| %>
-        <%= link_to pet.name, "/pets/#{pet.id}" %><br><br>
+        <ul class="default-list">
+          <li class="default-list-bullets"><%= link_to pet.name, "/pets/#{pet.id}" %></li>
+        </ul>
       <% end %>
   </section>
 </div>

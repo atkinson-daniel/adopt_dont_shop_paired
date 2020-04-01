@@ -1,12 +1,12 @@
 <h1><%= @shelter.name %> - Our Pets (<%= @shelter.pets.count %>)</h1>
-<%= link_to "Create Pet", "/shelters/#{@shelter.id}/pets/new" %>
+<%= link_to "Create Pet", "/shelters/#{@shelter.id}/pets/new", class: "box-links" %>
 
 <div class="flex-row container-fluid">
   <div class="row d-flex">
     <% @shelter.pets.each do |pet| %>
-      <div class="col-6">
+      <div class="pet-info"><br>
         <figure class="d-flex all-pet-imgs">
-          <img src="<%= pet.image %>"><br>
+          <img src="<%= pet.image %>" class="shelter-pet-img"><br>
           <ul>
             <li>Name: <%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
             <li>Sex: <%= pet.sex %></li>
@@ -15,7 +15,7 @@
             <li><%= link_to "Delete Pet", "/shelters/#{@shelter.id}/pets/#{pet.id}", method: :delete, class: "box-links" %>
           </ul>
         </figure>
-      <div>
+      </div>
     <% end %>
   </div>
 </div>
