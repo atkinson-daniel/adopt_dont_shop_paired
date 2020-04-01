@@ -54,6 +54,6 @@ describe "shelters page" do
 
     click_button("Save")
 
-    expect(page).to have_content("Unable to update shelter: Required fields are empty.")
+    expect(page).to have_content("Unable to update shelter: Name can't be blank.")
   end
 end

@@ -11,16 +11,13 @@ class SheltersController < ApplicationController
     if @shelter.save
       redirect_to '/shelters'
     else
-      flash[:notice] = "Unable to create shelter: Required fields are empty."
+      flash.now[:notice] = "Unable to create shelter: #{@shelter.errors.full_messages.to_sentence}."
       render :new
     end
   end
 
   def show
     @shelter = Shelter.find(params[:id])
-    if !params[:review].nil?
-      @shelter.sort_reviews(params)
-    end
   end
 
   def edit
@@ -33,7 +30,7 @@ class SheltersController < ApplicationController
     if @shelter.save
       redirect_to "/shelters/#{@shelter.id}"
     else
-      flash[:notice] = "Unable to update shelter: Required fields are empty."
+      flash[:notice] = "Unable to update shelter: #{@shelter.errors.full_messages.to_sentence}."
       render :edit
     end
   end

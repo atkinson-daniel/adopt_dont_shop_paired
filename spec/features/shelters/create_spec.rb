@@ -53,7 +53,7 @@ describe "shelters new page" do
 
     click_button("Create Shelter")
 
-    expect(page).to have_content("Unable to create shelter: Required fields are empty.")
+    expect(page).to have_content("Unable to create shelter: Zip can't be blank.")
 
   end
 end

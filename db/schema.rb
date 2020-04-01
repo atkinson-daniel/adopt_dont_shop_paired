@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200330214202) do
+ActiveRecord::Schema.define(version: 20200331225712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20200330214202) do
     t.string "image"
     t.bigint "shelter_id"
     t.string "description"
-    t.string "adoption_status"
+    t.string "adoption_status", default: "Adoptable"
     t.index ["shelter_id"], name: "index_pets_on_shelter_id"
   end
 
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20200330214202) do
     t.string "title"
     t.integer "rating"
     t.string "content"
-    t.string "picture"
+    t.string "picture", default: "https://i0.wp.com/happening-news.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-09-at-2.57.27-PM.png?resize=543%2C531&ssl=1"
     t.bigint "shelter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
