@@ -71,7 +71,7 @@ describe "on the pets show page" do
     click_link("All Applications")
     expect(current_path).to eq("/pets/#{pet_1.id}/applications")
 
-    within(".list_of_applicants") do
+    within(".list-of-applicants") do
       expect(page).to have_no_content(application_3.name)
 
       within("#application-#{application_1.id}")

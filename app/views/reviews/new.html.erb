@@ -1,15 +1,6 @@
-<h1>Add New Review</h1>
+<h2>Add New Review</h2>
 
-<%= form_tag "/shelters/#{@shelter.id}/reviews", method: "post" do %>
-  <%= label_tag :title %>
-  <%= text_field_tag :title %><br>
-  <%= label_tag :rating %>
-  <%= text_field_tag :rating %><br>
-  <%= label_tag :content %>
-  <%= text_field_tag :content %><br>
-  <%= label_tag :picture %>
-  <%= text_field_tag :picture %><br>
-  <%= submit_tag "Submit Review" %>
-<% end %>
-
-<br><h5><%= link_to "Go Back", "/shelters/#{@shelter.id}" %></h5>
+<%= render partial: 'form', locals: { path: "/shelters/#{@shelter.id}/reviews",
+                                      method: :post,
+                                      button_name: "Submit Review",
+                                      review: Review.new } %>

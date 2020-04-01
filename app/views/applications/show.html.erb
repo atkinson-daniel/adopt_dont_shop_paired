@@ -9,7 +9,7 @@
   <li>Description: <%= @application.description %></li><br>
   <li>Pets Applied for: </li><% @application.pets.each do |pet| %>
     <section id="pet_application_<%= pet.id %>">
-      <%= link_to pet.name, "/pets/#{pet.id}" %>
+      <%= link_to pet.name, "/pets/#{pet.id}" %> -
       <% if pet.approved_pet_app?(@application, pet) %>
         <%= link_to "Unapprove Application", pet_application_path(pet, app_id: @application), method: :delete, class: "box-links"%><br>
       <% else  %>
@@ -18,3 +18,4 @@
     </section>
   <% end %>
 </section>
+<%= link_to "Go Back", :back %>

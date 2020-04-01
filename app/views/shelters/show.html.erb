@@ -1,4 +1,4 @@
-<h3><%= link_to "Shelter's Pets (#{@shelter.count_of_pets})", "/shelters/#{@shelter.id}/pets" %></h3>
+<h2><%= link_to "Shelter's Pets (#{@shelter.count_of_pets})", "/shelters/#{@shelter.id}/pets" %></h2>
 
 Number of Applications: <%= @shelter.count_of_applications %><br><br>
 
@@ -11,16 +11,16 @@ Number of Applications: <%= @shelter.count_of_applications %><br><br>
 </p>
 
 <div>
-  <%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit" %>
+  <%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit", class:"box-links" %>
   <% if !@shelter.any_pending_pets? %>
-    <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
+    <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete, class:"box-links" %>
   <% end %>
 </div><br>
 
 <h2>Read Our Reviews!</h2>
 <div>Average Review Rating: <%= @shelter.average_rating %><div><br>
-<%= link_to "Highest Rated", "/shelters/#{@shelter.id}?review=desc" %>
-<%= link_to "Lowest Rated", "/shelters/#{@shelter.id}?review=asc" %>
+<%= link_to "Highest Rated", "/shelters/#{@shelter.id}?review=desc", class:"box-links" %>
+<%= link_to "Lowest Rated", "/shelters/#{@shelter.id}?review=asc", class:"box-links" %>
 <section class="review-list"
   <% @shelter.reviews.each do |review| %>
     <div>
@@ -30,10 +30,10 @@ Number of Applications: <%= @shelter.count_of_applications %><br><br>
       <% if !review.picture.nil? %>
         <p><%= image_tag(review.picture) %></p>
       <% end %>
-      <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
-      <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %><br><br>
+      <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit", class:"box-links"%>
+      <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete, class:"box-links" %><br><br>
     </div>
   <% end %>
 </section>
 
-<%= link_to "Add New Review", "/shelters/#{@shelter.id}/reviews/new" %>
+<%= link_to "Add New Review", "/shelters/#{@shelter.id}/reviews/new", class:"box-links" %>
