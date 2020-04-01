@@ -6,8 +6,4 @@ class Application < ApplicationRecord
   def self.applications_by_pet(params)
     Pet.find(params[:pet_id]).applications
   end
-
-  def self.application_by_id(app_id)
-    Application.find(params[:app_id])
-  end
 end
