@@ -22,7 +22,7 @@ Number of Applications: <%= @shelter.count_of_applications %><br><br>
 <%= link_to "Highest Rated", "/shelters/#{@shelter.id}?review=desc", class:"box-links" %>
 <%= link_to "Lowest Rated", "/shelters/#{@shelter.id}?review=asc", class:"box-links" %>
 <section class="review-list"
-  <% @shelter.reviews.each do |review| %>
+  <% @shelter.sort_reviews(params).each do |review| %>
     <div>
       <h4><%= review.title %></h4>
       <p>Rating <%= review.rating %></p>

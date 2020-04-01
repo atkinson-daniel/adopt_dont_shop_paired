@@ -35,7 +35,6 @@ class Shelter < ApplicationRecord
   end
 
   def sort_reviews(params)
-    require "pry"; binding.pry
     if params[:review] == "desc"
       reviews.order(rating: :desc, created_at: :desc)
     else

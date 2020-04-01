@@ -18,9 +18,6 @@ class SheltersController < ApplicationController
 
   def show
     @shelter = Shelter.find(params[:id])
-    if !params[:review].nil?
-      @shelter.sort_reviews(params)
-    end
   end
 
   def edit
